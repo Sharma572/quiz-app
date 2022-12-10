@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { QuizContest } from "../context/quiz";
 import Question from "./Question";
 import "./Quiz.css";
@@ -7,11 +7,11 @@ import "./Quiz.css";
 const Quiz = () => {
   const [quizState, dispatch] = useContext(QuizContest);
   console.log("quizState", quizState);
-   let navigate = useNavigate();
-   const routeChange = () => {
-     let path = `/showAnswer`;
-     navigate(path);
-   };
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/showAnswer`;
+    navigate(path);
+  };
   return (
     <>
       <div className="container">
@@ -49,6 +49,7 @@ const Quiz = () => {
             </h1>
             <Question />
             <button
+              disabled={!quizState.currentAnswer.length > 0}
               onClick={() => dispatch({ type: "NEXT_QUESTION" })}
               class=" py-3 text-3xl px-16 text-lg text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
             >
