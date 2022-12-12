@@ -45,8 +45,8 @@ const reducer = (state, action) => {
       };
     }
     case "TIMER":{
-      const startTimer = true
-      return {...state , timer: startTimer
+      // const startTimer = true
+      return {...state , timer: true
       }
     }
     case "RESET":

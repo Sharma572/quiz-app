@@ -11,7 +11,7 @@ const Instuction = () => {
     };
       let path = `/quiz`;
       navigate(path);
-    console.log("Timer", quizState);
+    // console.log("Timer", quizState);
     
   return (
     <>
