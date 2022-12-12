@@ -3,29 +3,29 @@ import questions from "../data";
 import { shuffleAnswers } from "../helper";
 
 const initialState = {
-  questions,
+  questions, // This is data of api
   currentQuestionIndex: 0,
   showResult: false,
   correctAnswerCount: 0,
   answer: shuffleAnswers(questions[0]),
-  currentAnswer: ''
+  currentAnswer: "",
+  timer: false
 };
 const reducer = (state, action) => {
-  console.log("reducer",state,action);
-// console.log('answer', initialState.answer);
+  console.log("reducer", state, action);
+  
   switch (action.type) {
-
     case "SELECTED_ANSWER": {
       const correctAnswerCount =
         action.payload ===
         state.questions[state.currentQuestionIndex].correctAnswer
           ? state.correctAnswerCount + 1
           : state.correctAnswerCount;
-          return{
-            ...state,
-            currentAnswer: action.payload,
-            correctAnswerCount
-          }
+      return {
+        ...state,
+        currentAnswer: action.payload,
+        correctAnswerCount,
+      };
     }
     case "NEXT_QUESTION": {
       const showResult =
@@ -33,14 +33,21 @@ const reducer = (state, action) => {
       const currentQuestionIndex = showResult
         ? state.currentQuestionIndex
         : state.currentQuestionIndex + 1;
-        const answer = showResult ? [] : shuffleAnswers(state.questions[currentQuestionIndex])
+      const answer = showResult
+        ? []
+        : shuffleAnswers(state.questions[currentQuestionIndex]);
       return {
         ...state,
         currentQuestionIndex,
         showResult,
         answer,
-        currentAnswer: '',
+        currentAnswer: "",
       };
+    }
+    case "TIMER":{
+      const startTimer = true
+      return {...state , timer: startTimer
+      }
     }
     case "RESET":
       return initialState;
@@ -53,5 +60,10 @@ export const QuizContest = createContext();
 
 export const QuizProvider = ({ children }) => {
   const value = useReducer(reducer, initialState);
-  return <QuizContest.Provider value={value}>{children}</QuizContest.Provider>;
+  return (
+    <QuizContest.Provider value={value}>
+      {children}
+      {console.log(children)}
+    </QuizContest.Provider>
+  );
 };
