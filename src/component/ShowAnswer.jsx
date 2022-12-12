@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ShowAnswer = () => {
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/`;
+    let path = `/quiz`;
     navigate(path);
   };
   return (

@@ -5,7 +5,8 @@ import ShowAnswer from "./component/ShowAnswer";
 import Instuction from "./component/Instuction";
 
 import { QuizContest } from "./context/quiz";
-import Timer from "@amplication/react-compound-timer/build";
+import Timer from "./component/Timer";
+// import Timer from "@amplication/react-compound-timer/build";
 
 const App = () => {
 
@@ -51,7 +52,7 @@ const App = () => {
   
   return (
     <>
-      {quizState.timer && (
+      {/* {quizState.timer && (
         <Timer initialTime={1200000} direction="backward">
           {() => (
             <span className="text-xl text-center text-green-900 absolute top-2 left-36 bg-yellow-200 p-3">
@@ -59,7 +60,8 @@ const App = () => {
             </span>
           )}
         </Timer>
-      )}
+      )} */}
+      {quizState.timer && <Timer />}
 
       <Routes>
         <Route path="/" element={<Instuction />} />
