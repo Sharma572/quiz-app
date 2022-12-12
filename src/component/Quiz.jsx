@@ -42,7 +42,7 @@ const Quiz = () => {
           </div>
         )}
         {!quizState.showResult && (
-          <div className="mt-40 flex flex-col items-center justify-items-center">
+          <div className="mt-12 flex flex-col items-center justify-items-center">
             
             <h1 className="text-5xl font-bold mb-4">
               Questions {quizState.currentQuestionIndex + 1} /{" "}
