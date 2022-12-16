@@ -12,7 +12,7 @@ const Quiz = () => {
   console.log("quizState", quizState);
   let navigate = useNavigate();
   const routeChange = () => {
-    let path = `/`;
+    let path = `/showAnswer`;
     navigate(path);
   };
   
