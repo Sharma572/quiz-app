@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import TimeUp from "./TimeUp";
 
 export default function Timer() {
-  const [time, setTime] = useState(300);
+  const [time, setTime] = useState(100);
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -16,20 +17,24 @@ export default function Timer() {
 
   return (
     <div className="App">
-      <p
-        className={
-          time < 300
-            ? "text-red-500"
-            : time > 600
-            ? "text-green-900"
-            : time < 600 && time > 300
-            ? "text-black-500"
-            : "text-black-900"
-        }
-      >
-        Time left: {`${Math.floor(time / 60)}`.padStart(2, 0)}:
-        {`${time % 60}`.padStart(2, 0)}
-      </p>
+      {time <= 0 ? (
+        <TimeUp />
+      ) : (
+        <p
+          className={
+            time < 590
+              ? "text-red-500"
+              : time > 600
+              ? "text-green-900"
+              : time < 600 && time > 300
+              ? "text-black-500"
+              : "text-black-900"
+          }
+        >
+          Time left: {`${Math.floor(time / 60)}`.padStart(2, 0)}:
+          {`${time % 60}`.padStart(2, 0)}
+        </p>
+      )}
     </div>
   );
 }

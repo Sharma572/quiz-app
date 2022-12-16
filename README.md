@@ -1,3 +1,13 @@
+## Task Which has been implemented.
+1. times up component logic done.
+2. full screen mode enabled.
+3. 
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

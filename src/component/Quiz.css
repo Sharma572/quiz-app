@@ -6,8 +6,19 @@ height: 32rem;
 border-radius: 10px;
 border: 1px solid darkblue;
 background-color: #B8E4F0;
+overflow: hidden;
 }
 .correct_answer{
     background-color: green;
     color: white;
+}
+.timer-contanier{
+    padding: 10px;
+        margin: 0 auto;
+        width: 80%;
+        height: 30rem;
+        border-radius: 10px;
+        border: 1px solid darkblue;
+        background-color: #B8E4F0;
+        overflow: hidden;
 }
