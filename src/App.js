@@ -4,11 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import ShowAnswer from "./component/ShowAnswer";
 import Instuction from "./component/Instuction";
 
-import { QuizContest } from "./context/quiz";
+// import { QuizContest } from "./context/quiz";
 
 const App = () => {
-const [quizState, dispatch] = useContext(QuizContest);
-const [tabHasFocus, setTabHasFocus] = useState(true);
+// const [quizState, dispatch] = useContext(QuizContest);
+// const [tabHasFocus, setTabHasFocus] = useState(true);
 
 
   // Code for prevent to detect tab change. 

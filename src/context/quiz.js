@@ -70,13 +70,4 @@ export const QuizProvider = ({ children }) => {
     </QuizContest.Provider>
   );
 };
-export const TimerContest = createContext();
-export const TimerProvider = ({ children }) => {
-  const [timerValue, setTimer] = useState(300);
-  const timer = useReducer(reducer,timerValue);
-  return (
-    <TimerContest.Provider timer={{timerValue,setTimer}}>
-      {children}
-    </TimerContest.Provider>
-  );
-};
+

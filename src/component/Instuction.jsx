@@ -4,7 +4,9 @@ import { QuizContest } from "../context/quiz";
 
 const Instuction = () => {
   const [quizState, dispatch] = useContext(QuizContest);
-  
+
+  console.log(quizState);
+
     let navigate = useNavigate();
     const routeChange = () => {
       dispatch({ type: "TIMER" });
