@@ -1,9 +1,11 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { createContext, useReducer, useState } from "react";
 import questions from "../data";
 import { shuffleAnswers } from "../helper";
 
 const initialState = {
-  questions, 
+  questions, // This is data of api
   currentQuestionIndex: 0,
   showResult: false,
   flagFire: false,
@@ -13,6 +15,10 @@ const initialState = {
   timer: false,
 
 };
+const API = "https://my-json-server.typicode.com/Sharma572/rest_api/questions";
+
+
+const data = [];
 const reducer = (state, action) => {
   console.log("reducer", state, action);
   
@@ -64,8 +70,26 @@ export const QuizContest = createContext();
 
 export const QuizProvider = ({ children }) => {
   const value = useReducer(reducer, initialState);
+  const [que,dispatch] = useReducer(reducer,data);
+
+  const getData = async () => {
+    try {
+      const result = await axios.get(API);
+      const que = result.data;
+
+      dispatch({ type: "API_DATA", payload: que });
+    } catch (error) {
+      dispatch({ type: "API_ERROR" });
+    }
+  };
+  useEffect(() => {
+    getData();
+    console.log("work");
+  }, []);
+
+
   return (
-    <QuizContest.Provider value={value} >
+    <QuizContest.Provider value={{value,que}} >
       {children}
     </QuizContest.Provider>
   );
