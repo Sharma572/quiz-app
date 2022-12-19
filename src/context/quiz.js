@@ -3,7 +3,7 @@ import questions from "../data";
 import { shuffleAnswers } from "../helper";
 
 const initialState = {
-  questions, // This is data of api
+  questions, 
   currentQuestionIndex: 0,
   showResult: false,
   flagFire: false,

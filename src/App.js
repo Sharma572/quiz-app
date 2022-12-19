@@ -11,6 +11,7 @@ const App = () => {
 // const [tabHasFocus, setTabHasFocus] = useState(true);
 
 
+
   // Code for prevent to detect tab change. 
   // useEffect(() => {
   //   const handleFocus = () => {
