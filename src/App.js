@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+
 import Quiz from "./component/Quiz";
 import { Routes, Route } from "react-router-dom";
 import ShowAnswer from "./component/ShowAnswer";

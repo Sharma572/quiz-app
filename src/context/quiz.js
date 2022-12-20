@@ -1,9 +1,14 @@
-import { createContext, useReducer, useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
+import { createContext, useReducer } from "react";
 import questions from "../data";
 import { shuffleAnswers } from "../helper";
+import Testreducer from "../reducers/testReducer";
+import reducer from '../reducers/questionReducers'
 
 const initialState = {
   questions, 
+  quesArr: [],
   currentQuestionIndex: 0,
   showResult: false,
   flagFire: false,
@@ -13,59 +18,30 @@ const initialState = {
   timer: false,
 
 };
-const reducer = (state, action) => {
-  console.log("reducer", state, action);
-  
-  switch (action.type) {
-    case "SELECTED_ANSWER": {
-      const correctAnswerCount =
-        action.payload ===
-        state.questions[state.currentQuestionIndex].correctAnswer
-          ? state.correctAnswerCount + 1
-          : state.correctAnswerCount;
-      return {
-        ...state,
-        currentAnswer: action.payload,
-        correctAnswerCount,
-      };
-    }
-    case "NEXT_QUESTION": {
-      const showResult =
-        state.currentQuestionIndex === state.questions.length - 1;
-      const currentQuestionIndex = showResult
-        ? state.currentQuestionIndex
-        : state.currentQuestionIndex + 1;
-        
-      const answer = showResult
-        ? []
-        : shuffleAnswers(state.questions[currentQuestionIndex]);
 
-      return {
-        ...state,
-        currentQuestionIndex,
-        showResult,
-        answer,
-        currentAnswer: "",
-      };
-    }
-    case "TIMER":{
-      // const startTimer = true
-      return {...state , timer: true
-      }
-    }
-    case "RESET":
-      return initialState;
-    default:
-      return state;
-  }
-};
 
 export const QuizContest = createContext();
 
 export const QuizProvider = ({ children }) => {
-  const value = useReducer(reducer, initialState);
+  const state = useReducer(reducer, initialState);
+  const [stats,dispatch] = useReducer(Testreducer, initialState);
+
+ 
+  const getQuesData= async()=>{
+    const result = await axios.get(`https://my-json-server.typicode.com/Sharma572/rest_api/questions`)
+    const quesArr = await result.data;
+    console.log(quesArr);
+    dispatch({ type: "API_DATA", payload: quesArr });
+      
+  }
+  useEffect(() => {
+    getQuesData();
+    // console.log("useEffect runs");
+  }, [])
+  
   return (
-    <QuizContest.Provider value={value} >
+    <QuizContest.Provider value={state} >
+     {console.log(state)}
       {children}
     </QuizContest.Provider>
   );

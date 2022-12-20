@@ -9,7 +9,7 @@ import Timer from "./Timer";
 const Quiz = () => {
   // const [timeVal, setTime] = useState(300);
   const [quizState, dispatch] = useContext(QuizContest);
-  console.log("quizState", quizState);
+  // console.log("quizState", quizState);
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/showAnswer`;
