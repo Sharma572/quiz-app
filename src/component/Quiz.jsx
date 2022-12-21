@@ -1,34 +1,45 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { QuizContest } from "../context/quiz";
 import Celebrate from "./Celebration";
 import Question from "./Question";
 import "./Quiz.css";
 import Timer from "./Timer";
+import { useAPI } from "../context/apiContext";
+
 
 const Quiz = () => {
   // const [timeVal, setTime] = useState(300);
+  const [time, setTime] = useState("");
   const [quizState, dispatch] = useContext(QuizContest);
   // console.log("quizState", quizState);
+  const { quizQuestion } = useAPI();
+  // console.log("Question", quizQuestion);
+
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/showAnswer`;
     navigate(path);
   };
-  
+
+  // TimeStamp capture from timer code
+  let timerData = (data) => {
+    setTime(data);
+  };
 
   return (
     <>
+    {/* {time} */}
       <div className="container">
-        {quizState.showResult ? "" : <Timer />}
-        {quizState.showResult ? <Celebrate /> : "" }
+        {quizState.showResult ? "" : <Timer timerData={timerData} />}
+        {quizState.showResult ? <Celebrate /> : ""}
         {quizState.showResult && (
-          <div className="result-page">
-            <div className="text-6xl text-center mt-8">Congratulations</div>
-            <div className="text-4xl text-center mt-5 text-gray-600">
+          <div className="result-page text-white">
+            <div className="text-6xl text-center mt-8">Finished</div>
+            <div className="text-4xl text-center mt-5 text-white-600">
               You 've have completed the quiz. in{" "}
             </div>
-            <div className="text-3xl text-center mt-5 text-gray-600">
+            <div className="text-3xl text-center mt-5 text-white-600">
               you've got{" "}
               <span
                 className={
@@ -60,14 +71,14 @@ const Quiz = () => {
         )}
         {!quizState.showResult && (
           <div className="mt-12 flex flex-col items-center justify-items-center">
-            <h1 className="text-5xl font-bold mb-4">
+            <h1 className="text-5xl text-white font-bold mb-4">
               Questions {quizState.currentQuestionIndex + 1} /{" "}
               {quizState.questions.length}
             </h1>
             <Question />
             <button
               disabled={!quizState.currentAnswer.length > 0}
-              onClick={() => dispatch({ type: "NEXT_QUESTION" })}
+              onClick={() => {dispatch({ type: "NEXT_QUESTION" }); timerData(); }}
               class={` ${
                 !quizState.currentAnswer.length > 0
                   ? "cursor-not-allowed"

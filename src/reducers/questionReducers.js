@@ -5,11 +5,11 @@ const Questionreducer = (state, action) => {
   //   console.log("reducer", state, action);
 
   switch (action.type) {
-    case "API_DATA":
-      return {
-        ...state,
-        quesArr: action.payload,
-      };
+    // case "API_DATA":
+    //   return {
+    //     ...state,
+    //     quesArr: action.payload,
+    //   };
 
     case "SELECTED_ANSWER": {
       const correctAnswerCount =

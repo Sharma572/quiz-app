@@ -1,11 +1,12 @@
 .container{
 padding: 10px;
-    margin: 4rem auto;
+    margin: 2rem auto;
 width: 80%;
-height: 32rem;
+height: 34rem;
 border-radius: 10px;
 border: 1px solid darkblue;
-background-color: #B8E4F0;
+background: linear-gradient(0deg, rgba(196, 111, 159, 0.8), rgba(0, 0, 0, 0.3)), url('../asserts//quiz-container.jpg') no-repeat;
+background-size: 100% 100%;
 overflow: hidden;
 }
 .correct_answer{
@@ -18,7 +19,7 @@ overflow: hidden;
         width: 80%;
         height: 30rem;
         border-radius: 10px;
-        border: 1px solid darkblue;
-        background-color: #B8E4F0;
+        border: none;
+        background-color: transparent;
         overflow: hidden;
 }
