@@ -1,7 +1,10 @@
 ## Task Which has been implemented.
 1. times up component logic done.
 2. full screen mode enabled.
-3. 
+3. finished page done.
+4. timer of quiz.
+5. instruction page.
+6. 
 
 
 
